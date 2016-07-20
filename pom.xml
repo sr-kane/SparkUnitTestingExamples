@@ -113,6 +113,7 @@
                 <configuration>
                     <charset>UTF-8</charset>
                     <scalaVersion>${scala.version}</scalaVersion>
+                    <mainSourceDir>${project.basedir}/src/main/scala</mainSourceDir>
                 </configuration>
                 <executions>
                     <execution>
@@ -131,6 +132,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- disable surefire tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -170,6 +180,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -212,6 +223,19 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- clean-up parquet directory -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>parquet</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
         </plugins>
 
     </build>

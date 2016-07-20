@@ -1,0 +1,6 @@
+parquet
+.idea
+tmp
+target
+*.iml
+/derby.log
